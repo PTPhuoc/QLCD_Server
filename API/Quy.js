@@ -174,15 +174,15 @@ uri.post("/ChinhSuaThanhVien", async (req, res) => {
       const User = await QuyPDaoTao.findById(req.body._id);
       const OldMoney = User.SoTien;
       await TaiNguyen.findByIdAndUpdate(TongQuy[0]._id, {
-        $set: { TongTien: TongTien - OldMoney + req.body.SoTien },
+        $set: { TongTien: TongTien - OldMoney + parseInt(req.body.SoTien)},
       });
       await QuyPDaoTao.findOneAndUpdate(
-        { Ma: req.body.Ma },
+        { _id: req.body._id },
         {
           $set: {
             Quy: req.body.Quy,
             Nam: req.body.Nam,
-            SoTien: req.body.SoTien,
+            SoTien: parseInt(req.body.SoTien),
             FullDay: req.body.FullDay,
           },
         }
@@ -192,15 +192,15 @@ uri.post("/ChinhSuaThanhVien", async (req, res) => {
       const User = await QuyPCongTac.findById(req.body._id);
       const OldMoney = User.SoTien;
       await TaiNguyen.findByIdAndUpdate(TongQuy[0]._id, {
-        $set: { TongTien: TongTien - OldMoney + req.body.SoTien },
+        $set: { TongTien: TongTien - OldMoney + parseInt(req.body.SoTien) },
       });
       await QuyPCongTac.findOneAndUpdate(
-        { Ma: req.body.Ma },
+        { _id: req.body._id },
         {
           $set: {
             Quy: req.body.Quy,
             Nam: req.body.Nam,
-            SoTien: req.body.SoTien,
+            SoTien: parseInt(req.body.SoTien),
             FullDay: req.body.FullDay,
           },
         }
@@ -210,15 +210,15 @@ uri.post("/ChinhSuaThanhVien", async (req, res) => {
       const User = await QuyPKHTC.findById(req.body._id);
       const OldMoney = User.SoTien;
       await TaiNguyen.findByIdAndUpdate(TongQuy[0]._id, {
-        $set: { TongTien: TongTien - OldMoney + req.body.SoTien },
+        $set: { TongTien: TongTien - OldMoney + parseInt(req.body.SoTien) },
       });
       await QuyPKHTC.findOneAndUpdate(
-        { Ma: req.body.Ma },
+        { _id: req.body._id },
         {
           $set: {
             Quy: req.body.Quy,
             Nam: req.body.Nam,
-            SoTien: req.body.SoTien,
+            SoTien: parseInt(req.body.SoTien),
             FullDay: req.body.FullDay,
           },
         }
@@ -228,15 +228,15 @@ uri.post("/ChinhSuaThanhVien", async (req, res) => {
       const User = await QuyPKhaoThi.findById(req.body._id);
       const OldMoney = User.SoTien;
       await TaiNguyen.findByIdAndUpdate(TongQuy[0]._id, {
-        $set: { TongTien: TongTien - OldMoney + req.body.SoTien },
+        $set: { TongTien: TongTien - OldMoney + parseInt(req.body.SoTien) },
       });
       await QuyPKhaoThi.findOneAndUpdate(
-        { Ma: req.body.Ma },
+        { _id: req.body._id },
         {
           $set: {
             Quy: req.body.Quy,
             Nam: req.body.Nam,
-            SoTien: req.body.SoTien,
+            SoTien: parseInt(req.body.SoTien),
             FullDay: req.body.FullDay,
           },
         }
@@ -246,15 +246,15 @@ uri.post("/ChinhSuaThanhVien", async (req, res) => {
       const User = await QuyPHCQT.findById(req.body._id);
       const OldMoney = User.SoTien;
       await TaiNguyen.findByIdAndUpdate(TongQuy[0]._id, {
-        $set: { TongTien: TongTien - OldMoney + req.body.SoTien },
+        $set: { TongTien: TongTien - OldMoney + parseInt(req.body.SoTien) },
       });
       await QuyPHCQT.findOneAndUpdate(
-        { Ma: req.body.Ma },
+        { _id: req.body._id },
         {
           $set: {
             Quy: req.body.Quy,
             Nam: req.body.Nam,
-            SoTien: req.body.SoTien,
+            SoTien: parseInt(req.body.SoTien),
             FullDay: req.body.FullDay,
           },
         }
