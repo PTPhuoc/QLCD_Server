@@ -1,4 +1,9 @@
 const uri = require("express").Router();
+const QuyPDaoTao = require("../Model/QuyPDaoTaoModel.js");
+const QuyPCongTac = require("../Model/QuyPCongTacModel.js");
+const QuyPHCQT = require("../Model/QuyPHCQTModel.js");
+const QuyPKhaoThi = require("../Model/QuyPKhaoThiModel.js");
+const QuyPKHTC = require("../Model/QuyPKHTCModel.js");
 const PhongDaoTao = require("../Model/PhongDaoTaoModel.js");
 const PhongCongTac = require("../Model/PhongCongTacModel.js");
 const PhongHCQT = require("../Model/PhongHCQTModel.js");
@@ -107,18 +112,23 @@ uri.post("/XoaThanhVien", async (req, res) => {
     const Type = req.body.Loai;
     if (Type === "DaoTao") {
       await PhongDaoTao.deleteOne({ Ma: req.body.Ma });
+      await QuyPDaoTao.deleteMany({Ma: req.body.Ma})
       res.send({ Status: "Success" });
     } else if (Type === "CongTac") {
       await PhongCongTac.deleteOne({ Ma: req.body.Ma });
+      await QuyPCongTac.deleteMany({Ma: req.body.Ma})
       res.send({ Status: "Success" });
     } else if (Type === "KHTC") {
       await PhongKHTC.deleteOne({ Ma: req.body.Ma });
+      await QuyPKHTC.deleteMany({Ma: req.body.Ma})
       res.send({ Status: "Success" });
     } else if (Type === "KhaoThi") {
       await PhongKhaoThi.deleteOne({ Ma: req.body.Ma });
+      await QuyPKhaoThi.deleteMany({Ma: req.body.Ma})
       res.send({ Status: "Success" });
     } else if (Type === "HCQT") {
       await PhongHCQT.deleteOne({ Ma: req.body.Ma });
+      await QuyPHCQT.deleteMany({Ma: req.body.Ma})
       res.send({ Status: "Success" });
     } else if (Type === "DoanVien") {
       await DoanVien.deleteOne({ Ma: req.body.Ma });
