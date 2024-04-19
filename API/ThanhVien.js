@@ -112,23 +112,23 @@ uri.post("/XoaThanhVien", async (req, res) => {
     const Type = req.body.Loai;
     if (Type === "DaoTao") {
       await PhongDaoTao.deleteOne({ Ma: req.body.Ma });
-      await QuyPDaoTao.deleteMany({Ma: req.body.Ma})
+      await QuyPDaoTao.deleteMany({ Ma: req.body.Ma, SoTien: 0 });
       res.send({ Status: "Success" });
     } else if (Type === "CongTac") {
       await PhongCongTac.deleteOne({ Ma: req.body.Ma });
-      await QuyPCongTac.deleteMany({Ma: req.body.Ma})
+      await QuyPCongTac.deleteMany({ Ma: req.body.Ma, SoTien: 0 });
       res.send({ Status: "Success" });
     } else if (Type === "KHTC") {
       await PhongKHTC.deleteOne({ Ma: req.body.Ma });
-      await QuyPKHTC.deleteMany({Ma: req.body.Ma})
+      await QuyPKHTC.deleteMany({ Ma: req.body.Ma, SoTien: 0 });
       res.send({ Status: "Success" });
     } else if (Type === "KhaoThi") {
       await PhongKhaoThi.deleteOne({ Ma: req.body.Ma });
-      await QuyPKhaoThi.deleteMany({Ma: req.body.Ma})
+      await QuyPKhaoThi.deleteMany({ Ma: req.body.Ma, SoTien: 0 });
       res.send({ Status: "Success" });
     } else if (Type === "HCQT") {
       await PhongHCQT.deleteOne({ Ma: req.body.Ma });
-      await QuyPHCQT.deleteMany({Ma: req.body.Ma})
+      await QuyPHCQT.deleteMany({ Ma: req.body.Ma, SoTien: 0 });
       res.send({ Status: "Success" });
     } else if (Type === "DoanVien") {
       await DoanVien.deleteOne({ Ma: req.body.Ma });
