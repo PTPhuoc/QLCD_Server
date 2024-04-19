@@ -20,10 +20,83 @@ const GetDay = () => {
   return Ngay + "/" + Thang + "/" + Nam;
 };
 
-uri.get("/ChucVu", async (req, res) => {
+uri.post("/ChucVu", async (req, res) => {
   try {
-    const Loai = await ChucVu.find();
-    res.send(Loai);
+    const ID = req.body._id;
+    const Loai = req.body.Loai;
+    if (Loai === "DaoTao") {
+      if (ID) {
+        const LastMember = await PhongDaoTao.find({ _id: { $nin: ID } });
+        const ChucVuValue = LastMember.filter((i) => i.ChucVu !== "Thành Viên");
+        const uniqueLoai = await ChucVu.find({ Loai: { $nin: ChucVuValue } });
+        res.send(uniqueLoai);
+      } else {
+        const ChucVuValue = await PhongDaoTao.distinct("ChucVu");
+        const HoldThanhVien = ChucVuValue.filter((i) => i !== "Thành Viên");
+        const uniqueLoai = await ChucVu.find({ Loai: { $nin: HoldThanhVien } });
+        res.send(uniqueLoai);
+      }
+    }else if (Loai === "CongTac") {
+      if (ID) {
+        const LastMember = await PhongCongTac.find({ _id: { $nin: ID } });
+        const ChucVuValue = LastMember.filter((i) => i.ChucVu !== "Thành Viên");
+        const uniqueLoai = await ChucVu.find({ Loai: { $nin: ChucVuValue } });
+        res.send(uniqueLoai);
+      } else {
+        const ChucVuValue = await PhongCongTac.distinct("ChucVu");
+        const HoldThanhVien = ChucVuValue.filter((i) => i !== "Thành Viên");
+        const uniqueLoai = await ChucVu.find({ Loai: { $nin: HoldThanhVien } });
+        res.send(uniqueLoai);
+      }
+    }else if (Loai === "HCQT") {
+      if (ID) {
+        const LastMember = await PhongHCQT.find({ _id: { $nin: ID } });
+        const ChucVuValue = LastMember.filter((i) => i.ChucVu !== "Thành Viên");
+        const uniqueLoai = await ChucVu.find({ Loai: { $nin: ChucVuValue } });
+        res.send(uniqueLoai);
+      } else {
+        const ChucVuValue = await PhongHCQT.distinct("ChucVu");
+        const HoldThanhVien = ChucVuValue.filter((i) => i !== "Thành Viên");
+        const uniqueLoai = await ChucVu.find({ Loai: { $nin: HoldThanhVien } });
+        res.send(uniqueLoai);
+      }
+    }else if (Loai === "KhaoThi") {
+      if (ID) {
+        const LastMember = await PhongKhaoThi.find({ _id: { $nin: ID } });
+        const ChucVuValue = LastMember.filter((i) => i.ChucVu !== "Thành Viên");
+        const uniqueLoai = await ChucVu.find({ Loai: { $nin: ChucVuValue } });
+        res.send(uniqueLoai);
+      } else {
+        const ChucVuValue = await PhongKhaoThi.distinct("ChucVu");
+        const HoldThanhVien = ChucVuValue.filter((i) => i !== "Thành Viên");
+        const uniqueLoai = await ChucVu.find({ Loai: { $nin: HoldThanhVien } });
+        res.send(uniqueLoai);
+      }
+    }else if (Loai === "KHTC") {
+      if (ID) {
+        const LastMember = await PhongKHTC.find({ _id: { $nin: ID } });
+        const ChucVuValue = LastMember.filter((i) => i.ChucVu !== "Thành Viên");
+        const uniqueLoai = await ChucVu.find({ Loai: { $nin: ChucVuValue } });
+        res.send(uniqueLoai);
+      } else {
+        const ChucVuValue = await PhongKHTC.distinct("ChucVu");
+        const HoldThanhVien = ChucVuValue.filter((i) => i !== "Thành Viên");
+        const uniqueLoai = await ChucVu.find({ Loai: { $nin: HoldThanhVien } });
+        res.send(uniqueLoai);
+      }
+    }else if (Loai === "DoanVien") {
+      if (ID) {
+        const LastMember = await DoanVien.find({ _id: { $nin: ID } });
+        const ChucVuValue = LastMember.filter((i) => i.ChucVu !== "Thành Viên");
+        const uniqueLoai = await ChucVu.find({ Loai: { $nin: ChucVuValue } });
+        res.send(uniqueLoai);
+      } else {
+        const ChucVuValue = await DoanVien.distinct("ChucVu");
+        const HoldThanhVien = ChucVuValue.filter((i) => i !== "Thành Viên");
+        const uniqueLoai = await ChucVu.find({ Loai: { $nin: HoldThanhVien } });
+        res.send(uniqueLoai);
+      }
+    }
   } catch (error) {
     console.log(error);
   }
